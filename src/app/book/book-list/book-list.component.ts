@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../book';
+import { BookDetail } from '../bookdetail';
 import { BookserviceService } from '../bookservice.service';
 @Component({
   selector: 'app-book-list',
@@ -7,12 +8,20 @@ import { BookserviceService } from '../bookservice.service';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  books: Array<Book> = [];
+  books: Array<BookDetail> = [];
+
+  selectedBook!: BookDetail;
+  selected: boolean = false;
+
+  onSelected(book: BookDetail): void {
+    this.selectedBook = book;
+    this.selected = true;
+  }
 
   constructor(private bookService: BookserviceService) { }
 
   getBooks() {
-    this.bookService.getBooks().subscribe((data: Book[]) => {
+    this.bookService.getBooks().subscribe((data: BookDetail[]) => {
       this.books = data;
     });
   }
