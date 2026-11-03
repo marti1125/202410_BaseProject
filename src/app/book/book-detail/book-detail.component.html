@@ -14,7 +14,7 @@
      <dl>
        <dt>Authors</dt>
        <dd class="caption" *ngFor="let author of bookDetail.authors">
-       {{ author.name }}
+         <a routerLink="/authors/{{ author.id }}">{{ author.name }}</a>
        </dd>
        <dt>ISBN</dt>
        <dd>{{ bookDetail.isbn }}</dd>
@@ -29,11 +29,16 @@
        <dd>{{ bookDetail.description }}</dd>
        <hr />
        <dt>Reviews</dt>
-       <ul>
+       <ul *ngIf="bookDetail.reviews && bookDetail.reviews.length > 0; else noReviews">
          <li class="caption" *ngFor="let review of bookDetail.reviews">
            {{ review.description }}
          </li>
        </ul>
+       <ng-template #noReviews>
+         <li class="text-muted caption">
+           No reviews available for this book.
+         </li>
+       </ng-template>
      </dl>
    </div>
  </div>

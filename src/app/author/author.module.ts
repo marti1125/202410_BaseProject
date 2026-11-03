@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthorComponent } from './author.component';
+import { AuthorListComponent } from './author-list/author-list.component';
+import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import { RouterModule } from '@angular/router';
+import { AuthorRoutingRoutes } from './author-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    AuthorRoutingRoutes
   ],
-  declarations: [AuthorComponent]
+  declarations: [AuthorListComponent, AuthorDetailComponent]
 })
 export class AuthorModule { }
