@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BookModule } from './book/book.module';
 import { BookRoutingModule } from './book/book-routing.module';
 import { EditorialModule } from './editorial/editorial.module';
@@ -10,6 +11,9 @@ import { AppComponent } from './app.component';
 import { AuthorModule } from './author/author.module';
 import { AuthorRoutingRoutes } from './author/author-routing.module';
 import { EditorialRoutingRoutes } from './editorial/editorial-routing.module';
+import { HttpErrorInterceptorService } from '../interceptors/HttpErrorInterceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,12 @@ import { EditorialRoutingRoutes } from './editorial/editorial-routing.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     AppRoutingModule,
     BookModule,
     EditorialModule,
@@ -27,7 +37,12 @@ import { EditorialRoutingRoutes } from './editorial/editorial-routing.module';
     AuthorRoutingRoutes
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

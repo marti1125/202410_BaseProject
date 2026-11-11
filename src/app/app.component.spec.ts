@@ -3,13 +3,15 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BookListComponent } from './book/book-list/book-list.component';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ToastrModule.forRoot()
       ],
       declarations: [
         AppComponent,
