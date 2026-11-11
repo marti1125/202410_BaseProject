@@ -34,3 +34,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Course
 
 * https://misovirtual.virtual.uniandes.edu.co/codelabs/MISW4104_202212_AngularListarBooks/index.html#0
+
+## Running with ES location
+
+* `ng serve --configuration=es`

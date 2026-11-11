@@ -16,6 +16,15 @@
           "standalone": false
         }
       },
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "es": {
+            "translation": "src/locale/messages.es.xlf",
+            "baseHref": ""
+          }
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -46,6 +55,11 @@
             }
           },
           "configurations": {
+            "es": {
+              "localize": ["es"],
+              "outputPath": "dist/mynewapp-es/",
+              "i18nMissingTranslation": "error"
+            }, 
             "production": {
               "budgets": [
                 {
@@ -78,6 +92,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "es": {
+              "buildTarget": "mynewapp:build:es"
+            },
             "production": {
               "buildTarget": "mynewapp:build:production"
             },
