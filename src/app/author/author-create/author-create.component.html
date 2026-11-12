@@ -25,7 +25,9 @@
      </div>
      <div
        class="alert alert-danger alert-dismissible fade show"
-       *ngIf="authorForm.get('name')!.hasError('minlength')"
+       *ngIf="authorForm.get('name')!.hasError('minlength') &&
+        authorForm.get('name')!.touched
+       "
      >
        Name too short
      </div>
@@ -50,6 +52,14 @@
      >
        Image required
      </div>
+     <div
+       class="alert alert-danger alert-dismissible fade show"
+       *ngIf="authorForm.get('image')!.hasError('maxlength') &&
+        authorForm.get('image')!.touched
+       "
+     >
+       Image URL too long
+     </div>
    </div>
 
    <!--Birth Date-->
@@ -58,6 +68,7 @@
      <input
        novalidate
        id="birthDate"
+       type="date"
        class="form-control"
        formControlName="birthDate"
        placeholder="Author's birth date"
@@ -71,6 +82,15 @@
      >
        Birth date required
      </div>
+     <div
+      class="alert alert-danger"
+      *ngIf="
+        authorForm.get('birthDate')!.hasError('pattern') &&
+        authorForm.get('birthDate')!.touched
+      "
+    >
+      Birth date must have the format yyyy-mm-dd
+    </div>
    </div>
 
    <!--Description-->
@@ -94,7 +114,9 @@
      </div>
      <div
        class="alert alert-danger alert-dismissible fade show"
-       *ngIf="authorForm.get('description')!.hasError('maxlength')"
+       *ngIf="authorForm.get('description')!.hasError('maxlength') &&
+        authorForm.get('description')!.touched
+       "
      >
        Description too long
      </div>

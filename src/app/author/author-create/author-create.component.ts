@@ -23,7 +23,7 @@ export class AuthorCreateComponent implements OnInit {
     this.authorForm = this.fb.group({
       name: ["", [Validators.required, Validators.minLength(2)]],
       image: ["", [Validators.required, Validators.maxLength(255)]],
-      birthDate: ["", [Validators.required]],
+      birthDate: ["", [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
       description: ["", [Validators.required, Validators.maxLength(100)]]
     });
   }
