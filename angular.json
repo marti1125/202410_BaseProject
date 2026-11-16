@@ -59,10 +59,12 @@
           },
           "configurations": {
             "es": {
-              "localize": ["es"],
+              "localize": [
+                "es"
+              ],
               "outputPath": "dist/mynewapp-es/",
               "i18nMissingTranslation": "error"
-            }, 
+            },
             "production": {
               "budgets": [
                 {
@@ -130,11 +132,60 @@
             ],
             "scripts": []
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "mynewapp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mynewapp:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "mynewapp:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "mynewapp:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "mynewapp:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mynewapp:serve:production"
+            }
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "e0ef0604-2f1a-4378-aaac-e1027d3789ca"
+    "analytics": "e0ef0604-2f1a-4378-aaac-e1027d3789ca",
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
   }
 }
